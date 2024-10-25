@@ -1,0 +1,341 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>HCW@Home - Login</title>
+    <!-- Google Fonts -->
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600&display=swap" rel="stylesheet">
+    <!-- Bootstrap CSS -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+
+    <link href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css" rel="stylesheet">
+    <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
+</head>
+
+<body>
+
+    <div class="container d-flex justify-content-center align-items-center min-vh-100">
+        <div>
+            <div class="card p-4 shadow-lg" style="max-width: 400px; width: 100%;">
+            <div class="text-center mb-4">
+                <div class="d-flex justify-content-center align-items-center ">
+                     <img class="m-2" src="{{ url_for('static',  filename='images/logo.webp') }}"  width="50px" alt="Your Image Description">
+
+                      <h3 class="m-2">HCW@Home</h3>
+                </div>
+
+
+                <p>Sign in to your account</p>
+            </div>
+
+            <!-- Google Sign In Button -->
+            <div class="text-center mb-3" id="googleSignInDiv">
+                <button id="googleSignInBtn" class="btn btn-google btn-block">
+                    <img src="{{ url_for('static', filename='images/google-icon.png') }}" alt="Google" style="width: 20px; margin-right: 10px;"> Sign in with Google
+                </button>
+            </div>
+             <!-- Google Sign Up Button -->
+
+            <div class="text-center mb-3 no-show" id="googleSignUpDiv">
+                <button id="googleSignUpBtn" class="btn btn-google btn-block">
+                    <img src="{{ url_for('static', filename='images/google-icon.png') }}" alt="Google" style="width: 20px; margin-right: 10px;"> Sign up with Google
+                </button>
+            </div>
+
+            <!-- Email Sign In Button -->
+            <div class="text-center mb-3" id="emailSignInDiv">
+                <button id="emailSignInBtn" class="btn btn-primary btn-block" >
+                    <i class="fa fa-envelope" style="margin-right: 10px;"></i> Sign in with Email
+                </button>
+            </div>
+
+          <!-- Email Sign Up Button -->
+            <div class="text-center mb-3 no-show" id="emailSignUpDiv">
+                <button id="emailSignUpBtn" class="btn btn-primary btn-block" >
+                    <i class="fa fa-envelope" style="margin-right: 10px;"></i> Sign up with Email
+                </button>
+            </div>
+
+     <!-- Hidden Email Login Form -->
+<form id="emailLoginForm" class="no-show" method="POST">
+    <div class="form-group">
+        <label for="email">Email</label>
+        <input type="email" class="form-control" id="email" name="email" placeholder="Enter your email" required>
+    </div>
+   <div class="form-group">
+    <label for="password">Password</label>
+    <div class="input-group">
+        <input type="password" class="form-control" id="password" name="password" placeholder="Enter your password" required>
+        <div class="input-group-append">
+            <button class="btn btn-outline-secondary" type="button" id="showPassword">
+                <i class="fa fa-eye" id="eyeIcon"></i>
+            </button>
+        </div>
+    </div>
+</div>
+
+ <div class="form-group form-check">
+        <input type="checkbox" class="form-check-input" id="rememberMe">
+        <label class="form-check-label" for="rememberMe">Remember me</label>
+        <a href="#" class="float-right">Forgot Password?</a>
+    </div>
+    <button type="submit" class="btn btn-primary btn-block">Sign In</button>
+</form>
+     <!-- Hidden Email SignUp Form -->
+<form id="emailSignUpForm" method="POST" class="no-show">
+    <div class="form-group">
+        <label for="email">Email</label>
+        <input type="email" class="form-control" id="email-signup" name="email" placeholder="Enter your email" required>
+    </div>
+   <div class="form-group">
+    <label for="password">Password</label>
+    <div class="input-group">
+        <input type="password" class="form-control" id="password-signup" name="password" placeholder="Enter your password" required>
+        <div class="input-group-append">
+            <button class="btn btn-outline-secondary" type="button" id="showPassword-signup">
+                <i class="fa fa-eye" id="eyeIcon-signup"></i>
+            </button>
+        </div>
+    </div>
+</div>
+<div class="form-group">
+    <label for="role">Select Your Role</label>
+    <select class="form-control" id="role" name="role" required>
+        <option value="" disabled selected>Select your role</option>
+        <option value="doctor">Doctor</option>
+        <option value="patient">Patient</option>
+        <option value="nurse">Nurse</option>
+        <option value="consultant">Consultant</option>
+        <option value="translator">Translator</option>
+    </select>
+</div>
+    <button type="submit" class="btn btn-primary btn-block">Sign Up</button>
+</form>
+
+            <!-- Sign-up Option -->
+            <div class="text-center mt-4" id="createAccountDiv">
+                <p>New user of HCW@Home? <a href="#" onclick="openSignUp()">Create account</a></p>
+            </div>
+
+                <!-- Sign-In Option -->
+            <div class="text-center mt-4 no-show" id="alreadyUserDiv">
+                <p>Already have an account? <a href="#" onclick="openSignIn()">Sign In</a></p>
+            </div>
+
+            <!-- Terms of Service Link -->
+            <div class="text-center mt-2">
+                <p class="small-text">By signing in, you agree to our <a href="https://hcw-at-home.com/terms" target="_blank">Terms of Service</a>.</p>
+            </div>
+        </div>
+            <div class="text-center mt-4">
+                  <select id="languageSelect" class="form-control" style="max-width: 150px; margin:  auto;">
+    <option value="en">English</option>
+    <option value="tr">Türkçe</option>
+    <option value="es">Español</option>
+    <option value="fr">Français</option>
+    <option value="de">Deutsch</option>
+    <option value="zh">中文</option>
+    <option value="ja">日本語</option>
+    <option value="ko">한국어</option>
+    <option value="pt">Português</option>
+    <option value="ru">Русский</option>
+    <option value="ar">العربية</option>
+    <option value="it">Italiano</option>
+    <option value="nl">Nederlands</option>
+    <option value="hi">हिंदी</option>
+    <option value="sv">Svenska</option>
+    <option value="pl">Polski</option>
+    <option value="id">Bahasa Indonesia</option>
+    <option value="he">עברית</option>
+    <option value="th">ไทย</option>
+    <option value="da">Dansk</option>
+</select>
+
+                </div>
+
+        </div>
+    </div>
+    <!-- Language Dropdown (below the card) -->
+
+    <!-- Bootstrap JS, Popper.js, and jQuery -->
+    <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.0.7/dist/umd/popper.min.js"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+    <script>
+        // Password visibility toggle
+        document.getElementById('showPassword').addEventListener('click', function() {
+            var passwordField = document.getElementById('password');
+            var passwordType = passwordField.getAttribute('type') === 'password' ? 'text' : 'password';
+            passwordField.setAttribute('type', passwordType);
+        });
+
+        // Show email form on button click
+        // Smoothly show email form on button click
+        document.getElementById('emailSignInBtn').addEventListener('click', function() {
+            var form = document.getElementById('emailLoginForm');
+            form.classList.toggle('no-show');
+
+            var emailDiv = document.getElementById('emailSignInDiv');
+            emailDiv.classList.toggle('no-show')
+
+            var emailInput = document.getElementById('email')
+            emailInput.focus()
+
+        });// Toggle the 'show' class
+    // Smoothly show email form on button click
+        document.getElementById('googleSignInBtn').addEventListener('click', function() {
+  // Send a POST request to the login endpoint
+    fetch("/", {
+        method: "POST",
+        headers: {
+            "Content-Type": "application/json"
+        },
+        body: JSON.stringify({ email: "admin@admin.com", password: "password" })
+    })
+    .then(response => response.json())
+    .then(data => {
+        if (data.success) {
+            // Redirect to the dashboard if login is successful
+            window.location.href = data.redirect_url;
+        } else {
+            // Display an error message if login fails
+            alert(data.error || "Login failed. Please try again.");
+        }
+    })
+    .catch(error => console.error("Error:", error));
+
+        });// Toggle the 'show' class
+
+        document.getElementById('emailSignUpBtn').addEventListener('click', function() {
+            var form = document.getElementById('emailSignUpForm');
+            form.classList.toggle('no-show');
+
+            var emailDiv = document.getElementById('emailSignUpDiv');
+            emailDiv.classList.toggle('no-show')
+
+            var emailInput = document.getElementById('email')
+            emailInput.focus()
+
+        });// Toggle the 'show' class
+   document.getElementById('googleSignUpBtn').addEventListener('click', function() {
+    // Send a POST request to the login endpoint
+    fetch("/", {
+        method: "POST",
+        headers: {
+            "Content-Type": "application/json"
+        },
+        body: JSON.stringify({ email: "admin@admin.com", password: "password" })
+    })
+    .then(response => response.json())
+    .then(data => {
+        if (data.success) {
+            // Fill the page with data from the response
+            document.getElementById("name-signup").textContent = data.user_data.name;
+            document.getElementById("email-signup").textContent = data.user_data.email;
+            document.getElementById("role-signup").value = data.user_data.role;
+
+            // Uncomment to redirect after filling data
+            // window.location.href = data.redirect_url;
+        } else {
+            alert(data.error || "Login failed. Please try again.");
+        }
+    })
+    .catch(error => console.error("Error:", error));
+});
+
+        // Function to update all the text content on the page based on the selected language
+        // Simplified translation structure
+const translations = {
+    en: {
+        "Sign in to your account": "Sign in to your account",
+        "Sign in with Google": "Sign in with Google",
+        "Sign in with Email": "Sign in with Email",
+        "Sign In": "Sign In",
+        "Email": "Email",
+        "Password": "Password",
+        "Remember me": "Remember me",
+        "Forgot Password?": "Forgot Password?",
+        "New user of HCW@Home? Create account": "New user of HCW@Home? Create account",
+        "By signing in, you agree to our Terms of Service.": "By signing in, you agree to our Terms of Service."
+    },
+    tr: {
+        "Sign in to your account": "Hesabınıza giriş yapın",
+        "Sign in with Google": "Google ile giriş yap",
+        "Sign in with Email": "Email ile giriş yap",
+        "Sign In": "Giriş Yap",
+        "Email": "Email",
+        "Password": "Şifre",
+        "Remember me": "Beni hatırla",
+        "Forgot Password?": "Şifrenizi mi unuttunuz?",
+        "New user of HCW@Home? Create account": "HCW@Home'a yeni misiniz? Hesap oluşturun",
+        "By signing in, you agree to our Terms of Service.": "Giriş yaparak, Hizmet Şartlarımızı kabul etmiş olursunuz."
+    }
+};
+
+function updateLanguage(lang) {
+    // Loop through each key in translations[lang] to replace matching text
+    for (const key in translations[lang]) {
+        document.querySelectorAll('*').forEach(function(element) {
+            if (element.children.length === 0) { // Only replace text in elements without children
+                const text = element.textContent.trim();
+                if (text === key) {
+                    element.textContent = translations[lang][key];
+                }
+            }
+        });
+    }
+}
+
+// Event listener for language selection
+document.getElementById('languageSelect').addEventListener('change', function() {
+    const selectedLang = this.value;
+    updateLanguage(selectedLang);
+});
+
+// Initialize with the default language (English)
+updateLanguage('en');
+// Password visibility toggle
+document.getElementById('showPassword').addEventListener('click', function() {
+    const passwordField = document.getElementById('password');
+    const eyeIcon = document.getElementById('eyeIcon');
+
+    if (passwordField.type === 'password') {
+        passwordField.type = 'text';
+        eyeIcon.classList.remove('fa-eye');
+        eyeIcon.classList.add('fa-eye-slash');
+    } else {
+        passwordField.type = 'password';
+        eyeIcon.classList.remove('fa-eye-slash');
+        eyeIcon.classList.add('fa-eye');
+    }
+});
+
+    function openSignUp(){
+            const emailSignInDiv = document.getElementById("emailSignInDiv");
+            const emailSignUpDiv = document.getElementById("emailSignUpDiv");
+
+            const googleSignInDiv = document.getElementById("googleSignInDiv");
+            const googleSignUpDiv = document.getElementById("googleSignUpDiv");
+
+            const createAccountDiv = document.getElementById("createAccountDiv");
+            const alreadyUserDiv = document.getElementById("alreadyUserDiv")
+
+            const signInForm = document.getElementById("emailLoginForm");
+
+            emailSignInDiv.classList.add("no-show");
+            emailSignUpDiv.classList.toggle("no-show");
+            googleSignInDiv.classList.toggle("no-show");
+            googleSignUpDiv.classList.toggle("no-show");
+            createAccountDiv.classList.toggle("no-show");
+            alreadyUserDiv.classList.toggle("no-show")
+            signInForm.classList.add("no-show")
+
+        }
+
+        function  openSignIn(){
+        window.location.reload()
+        }
+    </script>
+</body>
+</html>

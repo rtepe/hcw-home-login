@@ -1,0 +1,129 @@
+/* style.css */
+
+/* Color Palette */
+:root {
+    --primary-blue: #007bff;
+    --text-dark: #333333;
+    --background-light: #f7f9fc;
+    --input-border: #ced4da;
+    --google-btn-bg: #ffffff;
+    --google-btn-border: #333333;
+}
+
+/* Page Background */
+body {
+    background-image: url("images/blue-snow.png");
+    color: var(--text-dark);
+}
+
+/* Card Styling */
+.card {
+    border-radius: 10px;
+}
+
+/* Primary Button (Sign in with Email) */
+.btn-primary {
+    background-color: var(--primary-blue);
+    border-color: var(--primary-blue);
+    font-weight: bold;
+    padding: 10px;
+}
+
+/* Google Button */
+.google-btn {
+    background-color: var(--google-btn-bg);
+    color: var(--text-dark);
+    border: 1px solid var(--google-btn-border);
+    font-weight: bold;
+    padding: 10px;
+}
+
+.google-btn img {
+    margin-right: 10px;
+    vertical-align: middle;
+}
+
+/* Form Input Styling */
+input[type="email"], input[type="password"] {
+    border: 1px solid var(--input-border);
+    border-radius: 4px;
+}
+/* Google Button with Border */
+.btn-google {
+    background-color: white;
+    border: 2px solid #333333; /* Blackish border */
+    color: #333333;
+    font-weight: bold;
+    padding: 10px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.btn-google img {
+    margin-right: 10px;
+}
+
+.btn-google:hover {
+    background-color: #f1f1f1; /* Light grey hover effect */
+    border-color: #000000; /* Darker border on hover */
+    color: #000000; /* Darker text on hover */
+}
+
+
+/* Email Form - Show State */
+.show {
+    opacity: 1 !important;
+    height: auto !important;
+}
+/* Email Form - NoShow State */
+.no-show {
+    opacity: 0 !important;
+    height: 0 !important;
+    width: 0 !important;
+    overflow: hidden !important;
+    transition: all 0.8s ease; /* Smooth transition */
+}
+/* Input Fields Styling */
+.form-control {
+    border: 1px solid #ced4da;
+    border-radius: 5px;  /* Rounded borders */
+    padding: 4px;
+    box-shadow: none;
+    transition: border-color 0.3s ease;  /* Smooth border color transition */
+}
+
+/* Input Field Focus Styling */
+.form-control:focus {
+    border-color: #007bff;  /* Change border color to primary blue on focus */
+    outline: none;
+    box-shadow: 0 0 5px rgba(0, 123, 255, 0.3);  /* Slight shadow on focus */
+}
+/* Use Poppins for the whole form */
+body, .form-control, button {
+    font-family: 'Poppins', sans-serif;
+    font-weight: 400;
+}
+
+#languageSelect {
+    font-family: 'Poppins', sans-serif;
+    padding: 4px;
+    border-radius: 5px;
+    border: 1px solid #ced4da;
+}
+
+.small-text{
+    font-size: 14px;
+    color: #86989B;
+}
+.left-image-container {
+  width: 100px;
+    position: absolute;
+    left: 50px;
+    top: 50px;
+}
+
+.left-image-container img {
+  max-width: 100%; /* Adjusts to fit within the container */
+  height: auto;
+}
